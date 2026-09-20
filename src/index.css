@@ -1,0 +1,97 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/dm-sans';
+@import '@fontsource-variable/manrope';
+
+/* Design tokens — every value was eyedropped from the 1440px design file. */
+@theme {
+  --color-bg: #151515;
+  --color-lime: #c0e200; /* logo */
+  --color-badge: #d8ff00; /* 10K+ badge */
+  --color-olive: #1e2015; /* Download Now + active tab */
+  --color-olive-line: #2f3219;
+  --color-card: #181818;
+  --color-line: #242424;
+  --color-deco: #1d1f14;
+
+  --font-sans: 'DM Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Manrope Variable', 'DM Sans Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --animate-float: float 9s ease-in-out infinite;
+  --animate-float-slow: float 12s ease-in-out infinite reverse;
+  --animate-rise: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(2deg);
+    }
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer base {
+  html {
+    background: var(--color-bg);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: #fff;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-badge);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/*
+ * Hero glow: two stacked radial gradients least-squares fitted (RMSE ≈ 1.8/255 on the G channel)
+ * to 635 sampled pixels of the design file. Radii are in vw so the bloom scales with the viewport.
+ */
+.hero-glow {
+  --c: 206 245 0;
+  --rx1: clamp(560px, 85.3vw, 2600px);
+  --rx2: clamp(580px, 88.8vw, 2700px);
+  background:
+    radial-gradient(
+      ellipse var(--rx2) 314px at 50% -23px,
+      rgb(var(--c) / 0.838) 0%,
+      rgb(var(--c) / 0.629) 25%,
+      rgb(var(--c) / 0.17) 50%,
+      rgb(var(--c) / 0.026) 75%,
+      rgb(var(--c) / 0) 100%
+    ),
+    radial-gradient(
+      ellipse var(--rx1) 723px at 50% -8px,
+      rgb(var(--c) / 0.181) 0%,
+      rgb(var(--c) / 0.314) 25%,
+      rgb(var(--c) / 0.229) 50%,
+      rgb(var(--c) / 0.022) 75%,
+      rgb(var(--c) / 0) 100%
+    );
+}
