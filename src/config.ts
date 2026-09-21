@@ -2,9 +2,9 @@
 // TODO: replace the "#" placeholders with the real destinations.
 
 export const LINKS = {
-  playStore: '#', // Google Play listing
-  linuxDownload: '#', // Linux build (GitHub Releases / Flathub / AppImage …)
-  github: '#', // Source repository
+  playStore: 'https://play.google.com/store/apps/details?id=com.looper.player', // Google Play listing
+  linuxDownload: 'https://github.com/sthrnilshaaa/looper', // Linux build (GitHub Releases / Flathub / AppImage …)
+  github: 'https://github.com/sthrnilshaaa/looper', // Source repository
   issues: '#', // Issue tracker
   contribute: '#', // CONTRIBUTING guide
   privacy: '#',
