@@ -160,8 +160,8 @@ export function LyricsShowcase() {
   const stageVars = { '--fill': song.accent, '--dim': 'rgb(255 255 255 / 0.42)' } as CSSProperties
 
   return (
-    <section id="lyrics" className="relative px-4 py-[clamp(72px,10vw,140px)]">
-      <div className="mx-auto grid max-w-[1240px] items-center gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+    <section id="lyrics" className="relative px-4 py-12 sm:py-[clamp(72px,10vw,140px)]">
+      <div className="mx-auto grid max-w-[1240px] items-center gap-8 sm:gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
         <div>
           <SectionHead
             center={false}
@@ -174,7 +174,7 @@ export function LyricsShowcase() {
             lede="Every word lights up the moment it's sung. Tap any line to jump there, nudge the timing if it's off, and watch the whole screen take on the colours of the album cover."
           />
 
-          <Reveal delay={120} className="mt-8 flex flex-wrap items-center gap-3">
+          <Reveal delay={120} className="mt-6 sm:mt-8 flex flex-wrap items-center gap-3">
             <div role="radiogroup" aria-label="Sync style" className="flex rounded-2xl border border-white/[0.06] bg-[#161616] p-1">
               {(['word', 'line'] as const).map((s) => (
                 <button
@@ -193,7 +193,7 @@ export function LyricsShowcase() {
             <span className="text-[14px] text-white/45">Try it, it's live.</span>
           </Reveal>
 
-          <Reveal as="ul" delay={200} className="mt-9 grid gap-3 text-[15.5px] text-white/75 sm:grid-cols-2">
+          <Reveal as="ul" delay={200} className="mt-6 grid gap-2.5 text-[14.5px] text-white/75 sm:mt-9 sm:grid-cols-2 sm:gap-3 sm:text-[15.5px]">
             {[
               'Word-synced and line-synced lyrics',
               'Fetched online or from your own .lrc',
@@ -214,7 +214,7 @@ export function LyricsShowcase() {
           <div
             ref={stageRef}
             style={stageVars}
-            className="relative isolate overflow-hidden rounded-[34px] border border-white/[0.07] bg-[#0d0d0d] shadow-[0_40px_120px_-30px_rgba(0,0,0,0.9)]"
+            className="relative isolate overflow-hidden rounded-[26px] border sm:rounded-[34px] border-white/[0.07] bg-[#0d0d0d] shadow-[0_40px_120px_-30px_rgba(0,0,0,0.9)]"
           >
             {/* Colours from the artwork */}
             <div aria-hidden="true" className="absolute inset-0 -z-10">
@@ -243,7 +243,7 @@ export function LyricsShowcase() {
             {/* Lyrics */}
             <div
               ref={viewport}
-              className="relative h-[clamp(320px,44vw,460px)] overflow-hidden [mask-image:linear-gradient(transparent,#000_14%,#000_78%,transparent)]"
+              className="relative h-[280px] sm:h-[clamp(320px,44vw,460px)] overflow-hidden [mask-image:linear-gradient(transparent,#000_14%,#000_78%,transparent)]"
             >
               <ol aria-label={`Lyrics for ${song.title}`} className="px-5 sm:px-8">
                 <li
@@ -366,8 +366,8 @@ function Ctrl({
       type="button"
       aria-label={label}
       onClick={onClick}
-      className={`grid h-12 place-items-center rounded-2xl bg-white/[0.08] text-white backdrop-blur transition hover:bg-white/[0.14] active:scale-95 ${
-        wide ? 'w-20' : 'w-16'
+      className={`grid h-11 place-items-center rounded-2xl sm:h-12 bg-white/[0.08] text-white backdrop-blur transition hover:bg-white/[0.14] active:scale-95 ${
+        wide ? 'w-[72px] sm:w-20' : 'w-14 sm:w-16'
       }`}
     >
       <svg viewBox="0 0 24 24" className="size-5" fill="currentColor">

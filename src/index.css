@@ -102,6 +102,11 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 120px;
 }
+@media (max-width: 639px) {
+  html {
+    scroll-padding-top: 84px;
+  }
+}
 
 /* Scroll reveal (see Reveal.tsx). Items start lowered and transparent, then settle in. */
 .reveal {

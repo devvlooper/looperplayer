@@ -23,10 +23,10 @@ function Card({
 }) {
   return (
     <Reveal delay={delay} className={className}>
-      <article onPointerMove={spot} className="card card-spot flex h-full flex-col p-6 sm:p-7">
-        {visual && <div className="relative mb-6 flex-1">{visual}</div>}
-        <h3 className="font-display text-[20px] font-bold tracking-[-0.01em]">{title}</h3>
-        <p className="mt-2 text-[15px] leading-[1.6] text-white/60">{body}</p>
+      <article onPointerMove={spot} className="card card-spot flex h-full flex-col p-5 sm:p-7">
+        {visual && <div className="relative mb-5 flex-1 sm:mb-6">{visual}</div>}
+        <h3 className="font-display text-[18px] font-bold sm:text-[20px] tracking-[-0.01em]">{title}</h3>
+        <p className="mt-1.5 text-[14.5px] leading-[1.6] text-white/60 sm:mt-2 sm:text-[15px]">{body}</p>
       </article>
     </Reveal>
   )
@@ -34,7 +34,7 @@ function Card({
 
 export function Features() {
   return (
-    <section id="features" className="relative px-4 py-[clamp(72px,10vw,140px)]">
+    <section id="features" className="relative px-4 py-12 sm:py-[clamp(72px,10vw,140px)]">
       <SectionHead
         eyebrow="Features"
         title={
@@ -47,7 +47,7 @@ export function Features() {
         lede="Point Looper at a folder and it builds a library you can browse by song, album, artist, genre or folder, then gets out of the way."
       />
 
-      <div className="mx-auto mt-14 grid max-w-[1180px] auto-rows-auto gap-4 md:grid-cols-6">
+      <div className="mx-auto mt-8 grid max-w-[1180px] auto-rows-auto gap-3 sm:mt-14 sm:gap-4 md:grid-cols-6">
         <Card
           className="md:col-span-4"
           title="Colours from the artwork"
@@ -119,7 +119,7 @@ function ArtworkColours() {
   const c = COVERS[i]
   return (
     <div
-      className="relative flex h-full min-h-[200px] items-center gap-5 overflow-hidden rounded-2xl p-5 transition-[background] duration-1000"
+      className="relative flex h-full min-h-[150px] items-center gap-5 sm:min-h-[200px] overflow-hidden rounded-2xl p-5 transition-[background] duration-1000"
       style={{ background: `radial-gradient(120% 120% at 0% 0%, ${c.a}, ${c.b} 70%)` }}
     >
       <div className="flex shrink-0 gap-2">
@@ -164,7 +164,7 @@ const BANDS = Array.from({ length: 18 }, (_, i) => {
 
 function Equalizer() {
   return (
-    <div className="flex h-[150px] items-end gap-[3px] rounded-2xl bg-black/25 px-3 pb-3 pt-6" aria-hidden="true">
+    <div className="flex h-[124px] sm:h-[150px] items-end gap-[3px] rounded-2xl bg-black/25 px-3 pb-3 pt-6" aria-hidden="true">
       {BANDS.map((b, i) => (
         <span
           key={i}
@@ -197,7 +197,7 @@ function SearchDemo() {
   }, [q, len])
   const kind = ['Song', 'Artist', 'Lyric'][q]
   return (
-    <div className="flex h-[150px] flex-col justify-center gap-3" aria-hidden="true">
+    <div className="flex h-[124px] sm:h-[150px] flex-col justify-center gap-3" aria-hidden="true">
       <div className="flex items-center gap-2.5 rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-[15px]">
         <svg viewBox="0 0 24 24" className="size-4 shrink-0 text-white/50" fill="none" stroke="currentColor" strokeWidth="2.4">
           <circle cx="11" cy="11" r="7" />
@@ -228,7 +228,7 @@ function Widgets() {
   }, [])
   const spans = ['col-span-2', '', '', 'col-span-2', '', '', '', 'col-span-2', '', '', '', '']
   return (
-    <div className="grid h-[150px] grid-cols-4 grid-rows-3 gap-1.5" aria-hidden="true">
+    <div className="grid h-[124px] sm:h-[150px] grid-cols-4 grid-rows-3 gap-1.5" aria-hidden="true">
       {spans.slice(0, 9).map((s, i) => (
         <span
           key={i}
@@ -241,7 +241,7 @@ function Widgets() {
 
 function Desktop() {
   return (
-    <div className="flex h-[150px] overflow-hidden rounded-2xl border border-white/10 bg-black/30" aria-hidden="true">
+    <div className="flex h-[124px] sm:h-[150px] overflow-hidden rounded-2xl border border-white/10 bg-black/30" aria-hidden="true">
       <div className="flex w-1/4 flex-col gap-2 border-r border-white/10 p-3">
         <span className="h-2 w-4/5 rounded-full bg-badge/80" />
         {[0, 1, 2, 3].map((n) => (
@@ -268,7 +268,7 @@ function Desktop() {
 
 function Resume() {
   return (
-    <div className="flex h-[120px] items-center gap-4 rounded-2xl bg-black/25 p-4" aria-hidden="true">
+    <div className="flex h-[100px] sm:h-[120px] items-center gap-4 rounded-2xl bg-black/25 p-4" aria-hidden="true">
       <span className="size-14 shrink-0 rounded-xl bg-gradient-to-br from-[#c46a00] to-[#2e1a05]" />
       <div className="flex-1">
         <div className="text-[13px] text-white/50">Resuming</div>
@@ -284,7 +284,7 @@ function Resume() {
 
 function Backup() {
   return (
-    <div className="flex h-[120px] items-center justify-center gap-4 rounded-2xl bg-black/25" aria-hidden="true">
+    <div className="flex h-[100px] sm:h-[120px] items-center justify-center gap-4 rounded-2xl bg-black/25" aria-hidden="true">
       <span className="grid size-14 place-items-center rounded-2xl bg-white/[0.08]">
         <svg viewBox="0 0 24 24" className="size-6 text-white/80" fill="none" stroke="currentColor" strokeWidth="1.8">
           <rect x="6" y="2.5" width="12" height="19" rx="2.5" />
@@ -324,14 +324,14 @@ const HELLOS = [
 function Languages() {
   const row = [...HELLOS, ...HELLOS]
   return (
-    <Reveal className="mx-auto mt-16 max-w-[1180px]">
+    <Reveal className="mx-auto mt-10 max-w-[1180px] sm:mt-16">
       <p className="text-center text-[14px] text-white/50">Speaks 14 languages, including Hindi, Arabic, Japanese, Korean and Chinese</p>
-      <div className="mt-5 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)]">
+      <div className="mt-4 overflow-hidden sm:mt-5 [mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)]">
         <div className="marquee flex w-max gap-3" aria-hidden="true">
           {row.map((h, i) => (
             <span
               key={i}
-              className="rounded-full border border-white/[0.07] bg-white/[0.03] px-5 py-2.5 font-display text-[18px] font-semibold text-white/80"
+              className="rounded-full border border-white/[0.07] bg-white/[0.03] px-4 py-2 font-display text-[16px] sm:px-5 sm:py-2.5 sm:text-[18px] font-semibold text-white/80"
             >
               {h}
             </span>

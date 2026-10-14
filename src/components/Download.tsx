@@ -31,15 +31,15 @@ export function Download() {
   }
 
   return (
-    <section id="download" className="relative px-4 py-[clamp(72px,10vw,140px)]">
+    <section id="download" className="relative px-4 py-12 sm:py-[clamp(72px,10vw,140px)]">
       <SectionHead
         eyebrow="Download"
         title="Free on Android and Linux."
         lede="No account, no subscription. Install it and point it at your music."
       />
 
-      <div className="mx-auto mt-14 grid max-w-[1100px] gap-4 md:grid-cols-2">
-        <Reveal className="card card-spot flex flex-col p-7 sm:p-9">
+      <div className="mx-auto mt-8 grid max-w-[1100px] gap-3 sm:mt-14 sm:gap-4 md:grid-cols-2">
+        <Reveal className="card card-spot flex flex-col p-5 sm:p-9">
           <div className="flex items-center gap-3">
             <span className="grid size-12 place-items-center rounded-2xl bg-[#3ddc84]/15">
               <svg viewBox="0 0 24 24" className="size-6 fill-[#3ddc84]" aria-hidden="true">
@@ -54,7 +54,7 @@ export function Download() {
           <a
             href={LINKS.playStore}
             {...extProps(LINKS.playStore)}
-            className="mt-8 flex h-14 items-center justify-center gap-3 rounded-2xl bg-badge font-semibold text-bg transition hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(216,255,0,0.3)]"
+            className="mt-6 flex h-12 sm:mt-8 sm:h-14 items-center justify-center gap-3 rounded-2xl bg-badge font-semibold text-bg transition hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(216,255,0,0.3)]"
           >
             <PlayStoreIcon className="size-6" />
             Get it on Google Play
@@ -62,17 +62,17 @@ export function Download() {
           <a
             href={LINKS.releases}
             {...extProps(LINKS.releases)}
-            className="mt-3 flex h-14 items-center justify-center rounded-2xl border border-olive-line bg-olive text-white transition hover:border-[#4a5022] hover:bg-[#25281a]"
+            className="mt-3 flex h-12 sm:h-14 items-center justify-center rounded-2xl border border-olive-line bg-olive text-white transition hover:border-[#4a5022] hover:bg-[#25281a]"
           >
             Download the APK from GitHub
           </a>
-          <p className="mt-5 text-[14px] leading-[1.6] text-white/50">
+          <p className="mt-4 text-[14px] leading-[1.6] sm:mt-5 text-white/50">
             Not sure which APK? <span className="text-white/75">arm64-v8a</span> fits almost every phone from the last few
             years. The GitHub build can update itself from inside the app.
           </p>
         </Reveal>
 
-        <Reveal delay={100} className="card card-spot flex flex-col p-7 sm:p-9">
+        <Reveal delay={100} className="card card-spot flex flex-col p-5 sm:p-9">
           <div className="flex items-center gap-3">
             <span className="grid size-12 place-items-center rounded-2xl bg-white/[0.07]">
               <img src={linux} alt="" width={21} height={25} className="h-6 w-auto" />
@@ -83,7 +83,7 @@ export function Download() {
             </div>
           </div>
 
-          <div role="tablist" aria-label="Choose your distribution" className="mt-8 grid grid-cols-3 gap-1 rounded-2xl bg-[#161616] p-1">
+          <div role="tablist" aria-label="Choose your distribution" className="mt-6 grid grid-cols-3 sm:mt-8 gap-1 rounded-2xl bg-[#161616] p-1">
             {DISTROS.map((x) => (
               <button
                 key={x.id}
@@ -114,7 +114,7 @@ export function Download() {
           <a
             href={LINKS.releases}
             {...extProps(LINKS.releases)}
-            className="mt-auto flex h-14 items-center justify-center gap-2 rounded-2xl border border-olive-line bg-olive pt-0 text-white transition hover:border-[#4a5022] hover:bg-[#25281a] max-md:mt-6 md:mt-6"
+            className="mt-5 flex h-12 sm:mt-6 sm:h-14 items-center justify-center gap-2 rounded-2xl border border-olive-line bg-olive pt-0 text-white transition hover:border-[#4a5022] hover:bg-[#25281a]"
           >
             Download {d.file} from GitHub
             <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">

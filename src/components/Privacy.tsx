@@ -26,7 +26,7 @@ const POINTS = [
 
 export function Privacy() {
   return (
-    <section id="privacy" className="relative px-4 py-[clamp(72px,10vw,140px)]">
+    <section id="privacy" className="relative px-4 py-12 sm:py-[clamp(72px,10vw,140px)]">
       <SectionHead
         eyebrow="Privacy"
         title={
@@ -36,20 +36,20 @@ export function Privacy() {
         }
         lede="Looper is a music player, not a data business. It plays the files you already own and leaves you alone."
       />
-      <div className="mx-auto mt-14 grid max-w-[1180px] gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto mt-8 grid max-w-[1180px] gap-3 sm:mt-14 sm:gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {POINTS.map((p, i) => (
-          <Reveal key={p.title} delay={i * 80} className="card p-6">
+          <Reveal key={p.title} delay={i * 80} className="card p-5 sm:p-6">
             <span className="grid size-11 place-items-center rounded-xl bg-badge/10 text-badge">
               <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 {p.icon}
               </svg>
             </span>
-            <h3 className="mt-5 font-display text-[18px] font-bold">{p.title}</h3>
+            <h3 className="mt-4 font-display text-[18px] sm:mt-5 font-bold">{p.title}</h3>
             <p className="mt-2 text-[14.5px] leading-[1.6] text-white/60">{p.body}</p>
           </Reveal>
         ))}
       </div>
-      <Reveal className="mt-8 text-center">
+      <Reveal className="mt-6 text-center sm:mt-8">
         <a href={LINKS.github} {...extProps(LINKS.github)} className="text-[15px] text-white/60 underline decoration-white/20 underline-offset-4 transition hover:text-badge">
           Read the source on GitHub
         </a>

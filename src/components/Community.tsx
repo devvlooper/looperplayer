@@ -50,9 +50,9 @@ const FAQ = [
 export function Community() {
   return (
     <>
-      <section id="videos" className="relative px-4 py-[clamp(56px,8vw,110px)]">
+      <section id="videos" className="relative px-4 py-10 sm:py-[clamp(56px,8vw,110px)]">
         <SectionHead eyebrow="Videos" title="See it in action." />
-        <div className="mx-auto mt-12 grid max-w-[1000px] gap-5 sm:grid-cols-2">
+        <div className="mx-auto mt-8 grid max-w-[1000px] gap-4 sm:mt-12 sm:gap-5 sm:grid-cols-2">
           {VIDEOS.map((v, i) => (
             <Reveal key={v.id} delay={i * 100}>
               <a
@@ -88,13 +88,13 @@ export function Community() {
         </div>
       </section>
 
-      <section id="faq" className="relative px-4 py-[clamp(56px,8vw,110px)]">
+      <section id="faq" className="relative px-4 py-10 sm:py-[clamp(56px,8vw,110px)]">
         <SectionHead eyebrow="FAQ" title="Questions, answered." />
-        <div className="mx-auto mt-12 grid max-w-[820px] gap-3">
+        <div className="mx-auto mt-8 grid max-w-[820px] gap-2.5 sm:mt-12 sm:gap-3">
           {FAQ.map((f, i) => (
             <Reveal key={f.q} delay={i * 40}>
-              <details className="card group px-6 py-5 [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[17px] font-semibold">
+              <details className="card group px-5 py-4 sm:px-6 sm:py-5 [&_summary::-webkit-details-marker]:hidden">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[16px] font-semibold sm:text-[17px]">
                   {f.q}
                   <span className="grid size-8 shrink-0 place-items-center rounded-full bg-white/[0.06] text-badge transition duration-300 group-open:rotate-45">
                     <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2.4" aria-hidden="true">
@@ -102,15 +102,15 @@ export function Community() {
                     </svg>
                   </span>
                 </summary>
-                <p className="pt-3 text-[15.5px] leading-[1.7] text-white/60">{f.a}</p>
+                <p className="pt-3 text-[14.5px] leading-[1.65] sm:text-[15.5px] sm:leading-[1.7] text-white/60">{f.a}</p>
               </details>
             </Reveal>
           ))}
         </div>
       </section>
 
-      <section id="support" className="relative px-4 pb-[clamp(72px,10vw,130px)] pt-[clamp(40px,6vw,80px)]">
-        <Reveal className="relative mx-auto max-w-[1100px] overflow-hidden rounded-[36px] border border-badge/15 bg-[radial-gradient(120%_140%_at_50%_0%,rgba(216,255,0,0.14),rgba(30,32,21,0.6)_45%,#151515_80%)] px-6 py-14 text-center sm:px-12">
+      <section id="support" className="relative px-4 pb-12 pt-6 sm:pb-[clamp(72px,10vw,130px)] sm:pt-[clamp(40px,6vw,80px)]">
+        <Reveal className="relative mx-auto max-w-[1100px] overflow-hidden rounded-[28px] border border-badge/15 sm:rounded-[36px] bg-[radial-gradient(120%_140%_at_50%_0%,rgba(216,255,0,0.14),rgba(30,32,21,0.6)_45%,#151515_80%)] px-5 py-10 text-center sm:px-12 sm:py-14">
           <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-badge">Made by people who love music</p>
           <h2 className="mx-auto mt-3 max-w-[640px] font-display text-[clamp(1.9rem,3.4vw,2.9rem)] font-extrabold leading-[1.1] tracking-[-0.02em]">
             Help keep Looper free.
@@ -118,7 +118,7 @@ export function Community() {
           <p className="mx-auto mt-4 max-w-[560px] text-[16px] leading-[1.7] text-white/60">
             Star the repo, report a bug, translate a screen, or buy us a coffee. Every bit helps.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <div className="mt-6 flex flex-wrap justify-center gap-2.5 sm:mt-8 sm:gap-3">
             <a
               href={LINKS.kofi}
               {...extProps(LINKS.kofi)}
@@ -141,7 +141,7 @@ export function Community() {
               Join on Telegram
             </a>
           </div>
-          <div className="mt-12">
+          <div className="mt-8 sm:mt-12">
             <p className="text-[13px] text-white/45">Contributors</p>
             <a href={LINKS.contributors} {...extProps(LINKS.contributors)} className="mt-3 inline-block">
               <img

@@ -3,7 +3,7 @@ import { PlayGithubIcon } from './icons/PlayGithub'
 
 export function CtaRow() {
   return (
-    <div className="mt-[clamp(40px,6.8vw,98px)] flex flex-wrap items-center justify-center gap-1.5">
+    <div className="mt-8 sm:mt-[clamp(40px,6.8vw,98px)] flex flex-wrap items-center justify-center gap-1.5">
       <a
         href={LINKS.github}
         aria-label={`${COPY.badge} downloads, view on GitHub`}

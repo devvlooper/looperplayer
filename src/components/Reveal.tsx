@@ -44,10 +44,10 @@ export function SectionHead({
   return (
     <Reveal className={center ? 'mx-auto max-w-[860px] text-center' : 'max-w-[560px]'}>
       <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-badge">{eyebrow}</p>
-      <h2 className="mt-3 font-display text-[clamp(1.9rem,3.6vw,3.1rem)] font-extrabold leading-[1.08] tracking-[-0.02em]">
+      <h2 className="mt-2.5 font-display text-[1.65rem] sm:mt-3 sm:text-[clamp(1.9rem,3.6vw,3.1rem)] font-extrabold leading-[1.08] tracking-[-0.02em]">
         {title}
       </h2>
-      {lede && <p className="mt-4 text-[clamp(1rem,1.2vw,1.12rem)] leading-[1.7] text-white/65">{lede}</p>}
+      {lede && <p className="mt-3 text-[15px] leading-[1.6] sm:mt-4 sm:text-[clamp(1rem,1.2vw,1.12rem)] sm:leading-[1.7] text-white/65">{lede}</p>}
     </Reveal>
   )
 }

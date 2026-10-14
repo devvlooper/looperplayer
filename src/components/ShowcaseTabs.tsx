@@ -29,7 +29,7 @@ export function ShowcaseTabs() {
     <section
       id="showcase"
       aria-label="App screenshots"
-      className="relative mt-[clamp(48px,6.8vw,98px)]"
+      className="relative mt-10 sm:mt-[clamp(48px,6.8vw,98px)]"
     >
       <FloatingMarks />
 
@@ -67,7 +67,7 @@ export function ShowcaseTabs() {
         id="showcase-panel"
         role="tabpanel"
         aria-labelledby={`tab-${tab}`}
-        className="relative z-10 mt-7"
+        className="relative z-10 mt-5 sm:mt-7"
       >
         {tab === 'desktop' ? <DesktopShowcase key="d" /> : <MobileCarousel key="m" />}
       </div>

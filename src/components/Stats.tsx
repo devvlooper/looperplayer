@@ -12,17 +12,17 @@ const STATS = [
 export function Stats() {
   const [ref, inView] = useInView<HTMLDivElement>()
   return (
-    <div ref={ref} className="mx-auto mt-[clamp(56px,7vw,96px)] w-[calc(100%-32px)] max-w-[1180px]">
+    <div ref={ref} className="mx-auto mt-10 sm:mt-[clamp(56px,7vw,96px)] w-[calc(100%-32px)] max-w-[1180px]">
       <div className="glow-line" />
-      <dl className="grid grid-cols-2 gap-y-8 py-10 sm:grid-cols-3 lg:grid-cols-5">
+      <dl className="grid grid-cols-2 gap-y-6 py-7 sm:grid-cols-3 sm:gap-y-8 sm:py-10 lg:grid-cols-5">
         {STATS.map((s, i) => (
           <div key={s.label} className={`text-center ${i === STATS.length - 1 ? 'col-span-2 sm:col-span-1' : ''}`}>
             <dt className="sr-only">{s.label}</dt>
-            <dd className="font-display text-[clamp(2.2rem,3.6vw,3rem)] font-extrabold leading-none tracking-[-0.03em]">
+            <dd className="font-display text-[1.9rem] sm:text-[clamp(2.2rem,3.6vw,3rem)] font-extrabold leading-none tracking-[-0.03em]">
               <CountUp to={s.value} run={inView} delay={i * 120} />
               <span className="text-badge">{s.suffix}</span>
             </dd>
-            <dd aria-hidden="true" className="mt-2 text-[14px] text-white/55">
+            <dd aria-hidden="true" className="mt-1.5 text-[13px] text-white/55 sm:mt-2 sm:text-[14px]">
               {s.label}
             </dd>
           </div>

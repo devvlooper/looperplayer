@@ -12,7 +12,7 @@ const GENRES = [
 export function Analyze() {
   const [ref, inView] = useInView<HTMLDivElement>()
   return (
-    <section id="analyze" className="relative overflow-hidden px-4 py-[clamp(72px,10vw,140px)]">
+    <section id="analyze" className="relative overflow-hidden px-4 py-12 sm:py-[clamp(72px,10vw,140px)]">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-1/2 -z-0 h-[620px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(216,255,0,0.07),transparent)]"
@@ -23,11 +23,11 @@ export function Analyze() {
         lede="Time listened, streaks, top songs and artists, your busiest day and a genre breakdown. Songs are ranked by how much of them you actually heard, not just how often you tapped play."
       />
 
-      <div ref={ref} className="relative mx-auto mt-14 grid max-w-[1100px] items-center gap-6 lg:grid-cols-[1fr_auto_1fr]">
-        <div className="grid gap-4">
-          <Reveal className="card p-6">
+      <div ref={ref} className="relative mx-auto mt-8 grid max-w-[1100px] items-center gap-4 sm:mt-14 sm:gap-6 lg:grid-cols-[1fr_auto_1fr]">
+        <div className="grid gap-3 sm:gap-4">
+          <Reveal className="card p-5 sm:p-6">
             <p className="text-[13px] text-white/50">Listening time</p>
-            <p className="mt-1 font-display text-[40px] font-extrabold tracking-[-0.03em]">
+            <p className="mt-1 font-display text-[34px] sm:text-[40px] font-extrabold tracking-[-0.03em]">
               2h <span className="text-badge">52m</span>
             </p>
             <div className="mt-4 flex h-14 items-end gap-1.5">
@@ -40,14 +40,14 @@ export function Analyze() {
               ))}
             </div>
           </Reveal>
-          <Reveal delay={100} className="grid grid-cols-2 gap-4">
-            <div className="card p-5">
+          <Reveal delay={100} className="grid grid-cols-2 gap-3 sm:gap-4">
+            <div className="card p-4 sm:p-5">
               <p className="text-[13px] text-white/50">Current streak</p>
-              <p className="mt-1 font-display text-[26px] font-extrabold">4 days 🔥</p>
+              <p className="mt-1 font-display text-[22px] sm:text-[26px] font-extrabold">4 days 🔥</p>
             </div>
-            <div className="card p-5">
+            <div className="card p-4 sm:p-5">
               <p className="text-[13px] text-white/50">Busiest day</p>
-              <p className="mt-1 font-display text-[26px] font-extrabold">Wed</p>
+              <p className="mt-1 font-display text-[22px] sm:text-[26px] font-extrabold">Wed</p>
             </div>
           </Reveal>
         </div>
@@ -59,11 +59,11 @@ export function Analyze() {
             width={516}
             height={1100}
             loading="lazy"
-            className="h-[clamp(440px,48vw,580px)] w-auto drop-shadow-[0_40px_60px_rgba(0,0,0,0.6)]"
+            className="h-[380px] sm:h-[clamp(440px,48vw,580px)] w-auto drop-shadow-[0_40px_60px_rgba(0,0,0,0.6)]"
           />
         </Reveal>
 
-        <Reveal delay={160} className="card p-6">
+        <Reveal delay={160} className="card p-5 sm:p-6">
           <p className="text-[13px] text-white/50">Genre breakdown</p>
           <div className="mt-4 flex items-center gap-5">
             <Donut run={inView} />
@@ -96,7 +96,7 @@ export function Analyze() {
           </div>
         </Reveal>
       </div>
-      <p className="relative mt-6 text-center text-[13px] text-white/40">Sample numbers. Yours are worked out on your device and never leave it.</p>
+      <p className="relative mt-5 text-center sm:mt-6 text-[13px] text-white/40">Sample numbers. Yours are worked out on your device and never leave it.</p>
     </section>
   )
 }
