@@ -1,14 +1,22 @@
-import { useCallback, useRef, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from 'react'
-import home from '../assets/phone-home.webp'
-import library from '../assets/phone-library.webp'
-import lyrics from '../assets/phone-lyrics.webp'
-import player from '../assets/phone-player.webp'
+import {
+  useCallback,
+  useRef,
+  useState,
+  type CSSProperties,
+  type KeyboardEvent,
+  type PointerEvent,
+  type ReactNode,
+} from 'react'
+import { Clip } from './Clip'
 
+// Real screen recordings (public/clips, built by scripts/prep-videos.sh). Each clip is ~4 s; the
+// carousel moves on when the active clip ends, so phones change faster than the desktop showcase.
 const SLIDES = [
-  { src: home, title: 'Home', alt: 'Home screen with Quick Picks and a songs list' },
-  { src: player, title: 'Now Playing', alt: 'Now Playing screen showing lossless FLAC 24-bit playback' },
-  { src: lyrics, title: 'Lyrics', alt: 'Full-screen synced lyrics with the current line highlighted' },
-  { src: library, title: 'Library', alt: 'Library screen with favorites, albums, artists and playlists' },
+  { clip: 'm-colours', title: 'Now Playing', alt: 'Now Playing: the screen takes on the colours of each album cover' },
+  { clip: 'm-lyrics', title: 'Lyrics', alt: 'Word-synced lyrics lighting up as the song plays' },
+  { clip: 'm-home', title: 'Home', alt: 'Opening the app: Quick Picks, songs and albums' },
+  { clip: 'm-analyze', title: 'Looper Analyze', alt: 'Scrolling through Looper Analyze: listening time, streaks and top songs' },
+  { clip: 'm-eq', title: 'Equalizer', alt: 'The 18-band equalizer with presets' },
 ]
 
 const N = SLIDES.length
@@ -23,10 +31,15 @@ const offsetOf = (i: number, active: number) => {
 }
 
 export function MobileCarousel() {
-  const [active, setActive] = useState(0)
+  // `prev` lets a slide that wraps from one end to the other jump there instead of sliding across.
+  const [{ active, prev }, setPos] = useState({ active: 0, prev: 0 })
+  const setActive = useCallback((n: number) => setPos((p) => ({ active: n, prev: p.active })), [])
   const drag = useRef<{ x: number; moved: boolean } | null>(null)
 
-  const go = useCallback((delta: number) => setActive((a) => (a + delta + N) % N), [])
+  const go = useCallback((delta: number) => setPos((p) => ({ active: (p.active + delta + N) % N, prev: p.active })), [])
+
+  // The active clip advances the carousel when it ends; hovering or focusing loops it instead.
+  const [paused, setPaused] = useState(false)
 
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
@@ -53,6 +66,10 @@ export function MobileCarousel() {
       role="group"
       aria-roledescription="carousel"
       aria-label="Looper Player mobile screenshots"
+      onPointerEnter={() => setPaused(true)}
+      onPointerLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
       style={{ '--ph': 'clamp(360px, 43.5vw, 620px)' } as CSSProperties}
     >
       <div
@@ -66,7 +83,9 @@ export function MobileCarousel() {
         {SLIDES.map((s, i) => {
           const off = offsetOf(i, active)
           const isActive = off === 0
-          const visible = Math.abs(off) <= 1
+          const dist = Math.abs(off)
+          const visible = dist <= 2
+          const wrapped = Math.abs(off - offsetOf(i, prev)) > 2
           return (
             <div
               key={s.title}
@@ -77,25 +96,29 @@ export function MobileCarousel() {
               onClick={() => !isActive && visible && !drag.current?.moved && go(off)}
               style={
                 {
-                  '--off': visible ? off : 0,
-                  transform: `translateX(-50%) translateX(calc(var(--off) * var(--ph) * 0.56)) scale(${
-                    isActive ? 1 : visible ? 0.84 : 0.6
+                  '--off': off,
+                  transform: `translateX(-50%) translateX(calc(${Math.sign(off) * [0, 0.5, 0.92][dist]} * var(--ph))) scale(${
+                    [1, 0.84, 0.7][dist]
                   })`,
-                  opacity: isActive ? 1 : visible ? 0.45 : 0,
-                  zIndex: isActive ? 3 : visible ? 2 : 1,
+                  opacity: [1, 0.55, 0.25][dist],
+                  zIndex: 3 - dist,
                   pointerEvents: visible ? 'auto' : 'none',
+                  transitionProperty: wrapped ? 'none' : undefined,
                 } as CSSProperties
               }
-              className="absolute left-1/2 top-3 aspect-[729/1529] h-[var(--ph)] origin-center transition-[transform,opacity] duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform"
+              className={`absolute left-1/2 top-3 h-[var(--ph)] origin-center transition-[transform,opacity] duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
+                isActive ? '' : 'cursor-pointer'
+              }`}
             >
-              <img
-                src={s.src}
-                alt={isActive ? s.alt : ''}
-                width={729}
-                height={1529}
-                draggable={false}
-                className={`h-full w-full drop-shadow-[0_30px_36px_rgba(0,0,0,0.55)] ${isActive ? '' : 'cursor-pointer'}`}
-              />
+              <PhoneFrame>
+                <Clip
+                  name={s.clip}
+                  label={isActive ? s.alt : undefined}
+                  state={isActive ? 'play' : off === 1 ? 'ready' : 'hold'}
+                  loop={paused}
+                  onEnded={() => go(1)}
+                />
+              </PhoneFrame>
             </div>
           )
         })}
@@ -103,7 +126,7 @@ export function MobileCarousel() {
 
       <div className="mt-2 flex items-center justify-center gap-5">
         <ArrowButton dir="prev" onClick={() => go(-1)} />
-        <div className="flex items-center gap-2" role="tablist" aria-label="Choose screenshot">
+        <div className="flex items-center gap-2" role="tablist" aria-label="Choose screen">
           {SLIDES.map((s, i) => (
             <button
               key={s.title}
@@ -120,8 +143,20 @@ export function MobileCarousel() {
         <ArrowButton dir="next" onClick={() => go(1)} />
       </div>
       <p className="sr-only" aria-live="polite">
-        {`Showing ${SLIDES[active].title}, screenshot ${active + 1} of ${N}`}
+        {`Showing ${SLIDES[active].title}, ${active + 1} of ${N}`}
       </p>
+    </div>
+  )
+}
+
+/** A modern phone drawn in CSS: thin black bezel, metal rim, punch-hole camera. */
+function PhoneFrame({ children }: { children: ReactNode }) {
+  return (
+    <div className="relative aspect-[432/960] h-full rounded-[calc(var(--ph)*0.072)] bg-[#050505] p-[calc(var(--ph)*0.013)] shadow-[0_0_0_1.5px_#3a3a3a,0_0_0_3px_#151515,0_40px_70px_-20px_rgba(0,0,0,0.85)]">
+      <div className="relative h-full w-full overflow-hidden rounded-[calc(var(--ph)*0.06)] bg-black">
+        {children}
+        <span className="absolute left-1/2 top-[1.6%] size-[calc(var(--ph)*0.018)] -translate-x-1/2 rounded-full bg-black ring-1 ring-white/10" />
+      </div>
     </div>
   )
 }
@@ -130,7 +165,7 @@ function ArrowButton({ dir, onClick }: { dir: 'prev' | 'next'; onClick: () => vo
   return (
     <button
       onClick={onClick}
-      aria-label={dir === 'prev' ? 'Previous screenshot' : 'Next screenshot'}
+      aria-label={dir === 'prev' ? 'Previous screen' : 'Next screen'}
       className="grid size-11 place-items-center rounded-full border border-olive-line bg-olive text-white transition hover:-translate-y-px hover:border-[#4a5022] hover:bg-[#25281a]"
     >
       <svg viewBox="0 0 24 24" className={`size-5 ${dir === 'prev' ? '' : 'rotate-180'}`} fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">

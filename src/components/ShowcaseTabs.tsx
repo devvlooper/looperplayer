@@ -29,7 +29,7 @@ export function ShowcaseTabs() {
     <section
       id="showcase"
       aria-label="App screenshots"
-      className="relative mt-[clamp(48px,6.8vw,98px)] pb-[clamp(72px,12.9vw,186px)]"
+      className="relative mt-[clamp(48px,6.8vw,98px)]"
     >
       <FloatingMarks />
 

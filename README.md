@@ -1,14 +1,20 @@
 # Looper Player — Website
 
-Landing page for **Looper Player**, an offline music player built for Android & Linux.
-A fully static, single-page site: hero, a Mobile / Desktop screenshot showcase, and a footer.
+The website for **[Looper Player](https://github.com/sthrnilshaaa/looper)**, a free, open-source offline
+music player for Android & Linux with word-synced lyrics.
+
+**Live:** https://looperplayer.vercel.app
+
+It's a static, single-page site: the hero and screenshots from the original design, then a live lyrics
+demo, the features, Looper Analyze, downloads, privacy, videos, an FAQ and a support section.
 
 ## Tech stack
 
 - [Vite 8](https://vite.dev) + [React 19](https://react.dev) + TypeScript
 - [Tailwind CSS v4](https://tailwindcss.com) (design tokens in `@theme`)
-- Self-hosted fonts via `@fontsource-variable` (Manrope for the headline, DM Sans for everything else)
+- Self-hosted fonts via `@fontsource-variable` (Manrope for headings, DM Sans for everything else)
 - [oxlint](https://oxc.rs/docs/guide/usage/linter) for linting
+- No animation library: all motion is CSS plus a few small React hooks
 
 ## Getting started
 
@@ -19,105 +25,146 @@ npm install
 npm run dev        # dev server with hot reload → http://localhost:5173
 ```
 
-| Command           | What it does                                                        |
-| ----------------- | ------------------------------------------------------------------- |
-| `npm run dev`     | Start the dev server                                                |
-| `npm run build`   | Type-check (`tsc -b`) and build the production site into `dist/`    |
-| `npm run preview` | Serve the production build locally                                  |
-| `npm run lint`    | Lint the source with oxlint                                         |
-| `npm run assets`  | Regenerate optimized images — see [Images](#images--regenerating-assets) |
+| Command           | What it does                                                             |
+| ----------------- | ------------------------------------------------------------------------ |
+| `npm run dev`     | Start the dev server                                                     |
+| `npm run build`   | Type-check (`tsc -b`) and build the production site into `dist/`         |
+| `npm run preview` | Serve the production build locally                                       |
+| `npm run lint`    | Lint the source with oxlint                                              |
+| `npm run screens` | Rebuild the app screenshots from the app repo (see [Images](#images))    |
+| `npm run videos`  | Re-cut the screen-recording clips in `public/clips` (see [Images](#images)) |
+| `npm run og`      | Rebuild `public/og.png`, the link-preview image                          |
+| `npm run assets`  | Rebuild the logo, decoration and favicon from `design/`                  |
 
-## Before you ship: set the links
+## Page sections
 
-Every external link and the shared copy live in **[`src/config.ts`](src/config.ts)**.
-The links are currently `#` placeholders. Replace them with the real destinations:
+| Section              | Component(s)                         | Notes                                                        |
+| -------------------- | ------------------------------------ | ------------------------------------------------------------ |
+| Header               | `Header.tsx`, `HeroGlow.tsx`         | Section links on wide screens, a menu button below 1024px; turns solid after the hero. The top glow sweeps clockwise to a new colour every few seconds |
+| Hero                 | `Hero.tsx`, `CtaRow.tsx`             | Headline, 10K+ downloads badge, highlights, animated EQ      |
+| Screens              | `ShowcaseTabs.tsx`, `MobileCarousel.tsx`, `DesktopShowcase.tsx`, `Clip.tsx` | Real screen recordings: 5 phones in CSS phone frames (~4 s each) and a CSS laptop with Linux clips (5–8 s each). A slide moves on when its clip ends; hovering loops it; clips pause when scrolled away |
+| Stats                | `Stats.tsx`                          | Numbers count up when scrolled into view                     |
+| Lyrics (`#lyrics`)   | `LyricsShowcase.tsx`                 | A working copy of the lyrics screen (see below)              |
+| Features (`#features`) | `Features.tsx`                     | Bento grid with a small animation per card + languages strip |
+| Looper Analyze       | `Analyze.tsx`                        | Phone screenshot + animated sample stat cards                |
+| Download (`#download`) | `Download.tsx`                     | Play Store, APK, and Linux .deb / .rpm / .tar.gz with copyable install commands |
+| Privacy (`#privacy`) | `Privacy.tsx`                        | No account, no ads, no tracking, open source                 |
+| Videos, FAQ, Support | `Community.tsx`                      | YouTube videos, FAQ accordion, Ko-fi / GitHub / Telegram, contributors |
+| Footer               | `Footer.tsx`                         | All links real; GPL-3.0 note                                 |
 
-| Key             | Used by                                                       |
-| --------------- | ------------------------------------------------------------- |
-| `playStore`     | "Get it on Google Play" button (header) and **Download Now**  |
-| `linuxDownload` | Linux (penguin) button in the header                          |
-| `github`        | The **10K+** badge, and the footer's *Features* and *GitHub* links |
-| `issues`        | Footer → *Report An Issue*                                    |
-| `contribute`    | Footer → *Contribute*                                         |
-| `privacy`       | Footer → *Privacy Policy*                                     |
-| `licenses`      | Footer → *Legal* and *Licenses*                               |
+### The lyrics demo
 
-Full `http(s)` links open in a new tab (`rel="noreferrer"`); `#` links stay on the page.
-The footer's *Screenshots* and *Download* links scroll to the showcase and the hero buttons.
+`LyricsShowcase.tsx` runs a real player: a clock driven by `requestAnimationFrame`, three demo tracks
+with **original lyrics** (no copyrighted songs), and word timings generated per line. It shows what the
+app does:
 
-`COPY` in the same file holds the headline, subheading, and the badge text (`10K+`) — update the
-badge to the real number when you have it.
+- **Word by word / Line by line** toggle, the app's two sync styles
+- **Tap a line** to seek to it, click the progress bar to scrub
+- **♫ intro dots** before the first line
+- **Elastic follow**: rows near the active line move first and farther rows trail behind
+- **Colours from the artwork**: the blurred background blobs and accent change with each track
+
+The clock pauses when the demo is off screen.
+
+## Links and copy
+
+Every external link and the shared copy live in **[`src/config.ts`](src/config.ts)**:
+
+| Key                 | Points to                                                     |
+| ------------------- | ------------------------------------------------------------- |
+| `playStore`         | Google Play listing                                           |
+| `releases`          | GitHub latest release (APK + Linux packages)                  |
+| `linuxDownload`     | The on-page `#download` section (header penguin button)       |
+| `github`            | Source repository                                             |
+| `issues`            | GitHub issues                                                 |
+| `contribute`        | Contributing section of the app README                        |
+| `contributors`, `contributorsImage` | Contributors graph and the contrib.rocks avatar image |
+| `privacy`           | The on-page `#privacy` section                                |
+| `licenses`          | `LICENSE.md` (GPL-3.0) in the app repo                        |
+| `kofi`, `telegram`  | Ko-fi page and Telegram group                                 |
+
+`COPY.badge` is the hero badge text. `10K+` is the GitHub release download total
+(10,796 on 2026-10-14). Update it when the number grows.
+
+Full `http(s)` links open in a new tab (`rel="noreferrer"`); `#` links scroll within the page.
+
+## SEO
+
+`index.html` has the title, meta description and keywords, a canonical URL, Open Graph and Twitter card
+tags (with `public/og.png`, 1200×630), and `SoftwareApplication` JSON-LD. `public/robots.txt` and
+`public/sitemap.xml` point search engines at the site. If the domain changes, update it in
+`index.html`, `robots.txt`, `sitemap.xml`, `scripts/og-image.sh` and `LINKS.site`.
 
 ## Project structure
 
 ```
 .
-├── index.html                 # entry HTML: title, meta description, Open Graph tags, favicon
-├── public/favicon.png
-├── scripts/prep-assets.sh     # image pipeline (see below)
+├── index.html                  # entry HTML: SEO meta, Open Graph, JSON-LD
+├── public/                     # favicon.png, og.png, robots.txt, sitemap.xml
+│   └── clips/                  # m-*.mp4 (phone) and d-*.mp4 (desktop) recordings + .webp posters
+├── scripts/
+│   ├── prep-screens.sh         # app screenshots → src/assets/shots/*.webp
+│   ├── prep-videos.sh          # screen recordings → public/clips/*.mp4
+│   ├── og-image.sh             # builds public/og.png
+│   └── prep-assets.sh          # logo, decoration, favicon from design/
 └── src/
-    ├── main.tsx, App.tsx      # app shell
-    ├── index.css              # Tailwind, design tokens, hero glow, animations
-    ├── config.ts              # links + shared copy
-    ├── assets/                # optimized logo, decoration, and device mockups (committed)
+    ├── main.tsx, App.tsx       # app shell and section order
+    ├── index.css               # Tailwind, design tokens, hero glow, all keyframes
+    ├── config.ts               # links + shared copy
+    ├── hooks/useInView.ts      # IntersectionObserver hook + reduced-motion check
+    ├── assets/                 # logo, decoration, linux icon
+    │   └── shots/              # phone-*.webp and desk-*.webp app screenshots
     └── components/
-        ├── Header.tsx         # floating, sticky nav pill with Linux + Google Play buttons
-        ├── Hero.tsx           # headline + subheading
-        ├── CtaRow.tsx         # 10K+ badge and Download Now
-        ├── ShowcaseTabs.tsx   # Mobile / Desktop toggle (accessible tablist)
-        ├── DesktopShowcase.tsx
-        ├── MobileCarousel.tsx # looping, centered carousel of the four phone screens
-        ├── FloatingMarks.tsx  # faint floating logo shards behind the showcase
-        ├── Footer.tsx
-        ├── Logo.tsx
-        └── icons/             # Google Play and Play + GitHub badge icons as inline SVG
+        ├── Reveal.tsx          # scroll-reveal wrapper + shared section heading
+        ├── Header.tsx, Hero.tsx, CtaRow.tsx
+        ├── ShowcaseTabs.tsx, MobileCarousel.tsx, DesktopShowcase.tsx, FloatingMarks.tsx
+        ├── Stats.tsx, LyricsShowcase.tsx, Features.tsx, Analyze.tsx
+        ├── Download.tsx, Privacy.tsx, Community.tsx, Footer.tsx, Logo.tsx
+        └── icons/              # Google Play and Play + GitHub badge icons as inline SVG
 ```
 
 ## Design notes
 
 - **Tokens** (`src/index.css`, `@theme`): page background `#151515`, logo lime `#C0E200`,
-  badge lime `#D8FF00`, olive surfaces `#1E2015`, footer card `#181818` — all sampled from the design file.
-- **Hero glow:** two stacked radial gradients, least-squares fitted to pixels sampled from the design.
-  Radii are in `vw`, so the glow scales with the viewport.
-- **Fonts:** the headline is Manrope ExtraBold, the closest match to the design's display face by
-  x-height and width metrics (not an exact match); body text is DM Sans.
-- **Showcase:** Desktop is selected by default, as in the design. On phones (< 640px) the Mobile tab
-  is selected first. The carousel loops and supports arrow buttons, dots, swipe/drag, and ← / → keys.
-- **Accessibility:** proper `tablist` / `tabpanel` roles, carousel and slide semantics with a polite
-  live region, visible focus rings, and `prefers-reduced-motion` support (animations are disabled).
-- **Responsive:** built from the 1440px design and fluid down to phone widths with no horizontal scroll.
-- **Deliberate deviation:** the design's footer reads "Icenses"; it is rendered as "Licenses".
+  badge lime `#D8FF00`, olive surfaces `#1E2015`, cards `#181818`, all sampled from the design file.
+- **Hero glow:** two stacked radial gradients fitted to pixels sampled from the design. Radii are in
+  `vw`, so the glow scales with the viewport.
+- **Motion:** scroll reveals (`Reveal`), count-ups, the lyrics player, card micro-animations, a
+  languages marquee and auto-advancing screenshots. Everything respects `prefers-reduced-motion`:
+  animations stop, reveals show immediately, and carousels don't auto-advance.
+- **Accessibility:** `tablist`/`tab`/`tabpanel` roles on the switchers, a radiogroup for the sync style,
+  carousel and slide semantics with a polite live region, native `<details>` for the FAQ, visible focus
+  rings, and alt text on every screenshot.
+- **Responsive:** fluid from 1440px down to phone widths with no horizontal scroll.
 
-## Images & regenerating assets
+<a id="images"></a>
+## Images
 
-The optimized images in `src/assets/` and `public/favicon.png` are **committed**, so you can run and
-build the site without doing anything here.
-
-The original design files live in a local `design/` folder that is **git-ignored** (it isn't part of
-this repo). Only regenerate assets if you have those originals, placed in `design/` with these names:
-
-| Source file(s) in `design/`                          | Output                          |
-| ---------------------------------------------------- | ------------------------------- |
-| `iPhone 17 - 474 1.png` (the desktop mockup)         | `src/assets/desktop.webp`       |
-| `Group 67664.png` / `67665.png` / `67666.png` / `67667.png` | `phone-home` / `phone-lyrics` / `phone-player` / `phone-library` `.webp` |
-| `Mask group.png`                                     | `src/assets/logo.png`, `public/favicon.png` |
-| `Mask group (2).png`                                 | `src/assets/deco.png`           |
-| `Vector.png`                                         | `src/assets/linux.png`          |
+Screenshots are built from the app repo's `media/` folder (default `../looper_player/media`):
 
 ```bash
-npm run assets     # requires ImageMagick 7 (the `magick` command) with WebP support
+npm run screens                      # or: bash scripts/prep-screens.sh /path/to/looper/media
 ```
 
-Why the crop step exists: the source mockup PNGs carry a large baked-in shadow and the devices sit
-off-center in their canvases. The script crops each to the device silhouette, removes the leftover
-shadow alpha (otherwise it shows as a faint hard-edged rectangle), and converts to WebP. The site
-draws its own shadow with CSS.
+The phone screenshots are 1080×1920 renders of a phone on a dark backdrop. The script crops to the
+phone body, cuts the rounded corners out with an alpha mask, and saves WebP. Desktop screenshots are
+resized to 1600px wide. Requires ImageMagick 7 (`magick`) with WebP support.
+
+`npm run videos` cuts the looping clips in `public/clips/` (H.264 MP4 + WebP poster each) from the
+promo project's recordings (default `../looper_showcase/captures`). Phone clips are 432×960, desktop
+clips 1600×874, the same ratio as the laptop screen in `DesktopShowcase.tsx`, so nothing is letterboxed.
+Needs `ffmpeg` with `libopenh264` and `libwebp`.
+
+`npm run og` rebuilds the link preview from those screenshots, the logo and the app's fonts
+(`../looper_player/assets/fonts`).
+
+The original Figma exports live in a local, **git-ignored** `design/` folder; `npm run assets` only
+needs them for the logo, decoration and favicon.
 
 ## Deployment
 
-The site is static: run `npm run build` and serve the `dist/` folder from any static host
-(Netlify, Vercel, Cloudflare Pages, GitHub Pages, S3, …). Build command: `npm run build`;
-output directory: `dist`.
+The site is static and deployed on Vercel. Build command: `npm run build`; output directory: `dist`.
+Any static host works (Netlify, Cloudflare Pages, GitHub Pages, …).
 
 If you host under a sub-path such as `https://<user>.github.io/<repo>/`, set the base path in
 `vite.config.ts` first:
@@ -131,5 +178,5 @@ export default defineConfig({
 
 ## License
 
-No license has been chosen yet. Add a `LICENSE` file (and point the `licenses` link in
-`src/config.ts` at it) before accepting contributions.
+The app is licensed under [GPL-3.0](https://github.com/sthrnilshaaa/looper/blob/main/LICENSE.md).
+This website repo doesn't have its own `LICENSE` file yet.
