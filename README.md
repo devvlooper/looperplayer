@@ -1,12 +1,70 @@
-# Looper Player — Website
+<p align="center">
+  <img src="src/assets/logo.png" width="72" alt="Looper Player logo" />
+</p>
 
-The website for **[Looper Player](https://github.com/sthrnilshaaa/looper)**, a free, open-source offline
-music player for Android & Linux with word-synced lyrics.
+<h3 align="center">The website for Looper Player — a music player that makes your own collection feel new again.</h3>
 
-**Live:** https://looperplayer.vercel.app
+<p align="center">
+  Live word-synced lyrics, real app recordings and colours that move. Built with React, Vite and Tailwind.
+</p>
 
-It's a static, single-page site: the hero and screenshots from the original design, then a live lyrics
-demo, the features, Looper Analyze, downloads, privacy, videos, an FAQ and a support section.
+<p align="center">
+  <a href="https://looperplayer.vercel.app"><img src="https://img.shields.io/badge/live-looperplayer.vercel.app-d8ff00?style=flat-square&labelColor=151515" alt="Live site" /></a>
+  <img src="https://img.shields.io/badge/React-19-000000?style=flat-square&logo=react" alt="React 19" />
+  <img src="https://img.shields.io/badge/Vite-8-000000?style=flat-square&logo=vite" alt="Vite 8" />
+  <img src="https://img.shields.io/badge/Tailwind-4-000000?style=flat-square&logo=tailwindcss" alt="Tailwind CSS 4" />
+  <img src="https://img.shields.io/badge/TypeScript-000000?style=flat-square&logo=typescript" alt="TypeScript" />
+</p>
+
+<p align="center">
+  <a href="https://looperplayer.vercel.app"><b>Visit the site</b></a> •
+  <a href="https://github.com/sthrnilshaaa/looper">The app on GitHub</a> •
+  <a href="https://play.google.com/store/apps/details?id=com.looper.player">Google Play</a> •
+  <a href="#getting-started">Run it locally</a>
+</p>
+
+<p align="center">
+  <a href="https://looperplayer.vercel.app"><img src="public/og.png" width="88%" alt="Looper Player website preview" /></a>
+</p>
+
+---
+
+## What's on the site
+
+<p align="center">
+  <img src="public/clips/m-colours.webp" width="18%" alt="Now Playing" />
+  <img src="public/clips/m-lyrics.webp" width="18%" alt="Lyrics" />
+  <img src="public/clips/m-home.webp" width="18%" alt="Home" />
+  <img src="public/clips/m-analyze.webp" width="18%" alt="Looper Analyze" />
+  <img src="public/clips/m-eq.webp" width="18%" alt="Equalizer" />
+</p>
+
+- **A lyrics player you can try.** Not a video: word-by-word and line-by-line sync, tap a line to jump,
+  scrub the progress bar, and watch the background take the colours of each track.
+- **The real app, moving.** Five phones and a laptop play actual screen recordings of Looper on Android
+  and Linux.
+- **A glow that changes colour.** The half-circle behind the header sweeps clockwise through album colours.
+- **Every feature at a glance.** Album-colour themes, the 18-band EQ, lyric search, 12 widgets,
+  Looper Analyze, backups and 14 languages, each with its own small animation.
+- **One-tap downloads.** Google Play, the APK, and Linux `.deb` / `.rpm` / `.tar.gz` with copyable
+  install commands.
+- **Fast and light.** No animation library, no analytics, no cookies. Lazy media, clips that pause off
+  screen, and full `prefers-reduced-motion` support.
+- **Works everywhere.** From a 360px phone to a wide desktop, with a mobile menu and no sideways scrolling.
+
+## About Looper Player
+
+[Looper](https://github.com/sthrnilshaaa/looper) is a free, open-source offline music player for Android and
+Linux. It plays the music files you already own, with word-synced lyrics, album-colour themes, an 18-band
+equalizer, listening stats and home-screen widgets. No account, no ads, no tracking.
+
+<p>
+  <a href="https://play.google.com/store/apps/details?id=com.looper.player">
+    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" height="60" />
+  </a>
+</p>
+
+---
 
 ## Tech stack
 
@@ -16,6 +74,7 @@ demo, the features, Looper Analyze, downloads, privacy, videos, an FAQ and a sup
 - [oxlint](https://oxc.rs/docs/guide/usage/linter) for linting
 - No animation library: all motion is CSS plus a few small React hooks
 
+<a id="getting-started"></a>
 ## Getting started
 
 **Requirements:** Node.js `^20.19` or `>=22.12` (a Vite 8 requirement) and npm.
@@ -176,7 +235,32 @@ export default defineConfig({
 })
 ```
 
+## Contributing
+
+Spotted a typo, a broken link or a layout bug? Open an [issue](https://github.com/sthrnilshaaa/looper/issues)
+or send a pull request. Run `npm run lint` and `npm run build` first, and check the page at phone width.
+
+## Credits
+
+* **Nilesh Suthar** — development
+* **Karan Suthar** — design
+
+## Support
+
+Looper is free and open source. If you enjoy it, star the [app repo](https://github.com/sthrnilshaaa/looper),
+share it, or support us on Ko-fi:
+
+<a href="https://ko-fi.com/L2L124TL7L">
+  <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Support Looper on Ko-fi" />
+</a>
+
 ## License
 
 The app is licensed under [GPL-3.0](https://github.com/sthrnilshaaa/looper/blob/main/LICENSE.md).
 This website repo doesn't have its own `LICENSE` file yet.
+
+## Contact
+
+Say hi on Telegram:
+
+[![Telegram](https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/looperPlayer)
