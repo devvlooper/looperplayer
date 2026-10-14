@@ -13,8 +13,8 @@ const SECTIONS = [
 ]
 
 const btn =
-  'flex h-14 items-center rounded-2xl border border-white/20 bg-white/[0.08] text-white transition ' +
-  'shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] hover:-translate-y-px hover:border-white/35 hover:bg-white/[0.14] active:translate-y-0'
+  'flex h-11 items-center rounded-xl border border-white/20 bg-white/[0.08] text-white transition ' +
+  'shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] hover:-translate-y-px hover:border-white/35 hover:bg-white/[0.14] active:translate-y-0 sm:h-12 md:h-14 md:rounded-2xl'
 
 export function Header() {
   // Past the hero the bar turns more solid so text scrolling underneath doesn't show through.
@@ -61,18 +61,18 @@ export function Header() {
             href={LINKS.linuxDownload}
             aria-label="Download for Linux"
             title="Download for Linux"
-            className={`${btn} w-12 justify-center sm:w-[52px] md:w-[57px]`}
+            className={`${btn} w-11 justify-center sm:w-12 md:w-[57px]`}
             {...(isExternal(LINKS.linuxDownload) && { target: '_blank', rel: 'noreferrer' })}
           >
-            <img src={linux} alt="" width={21} height={25} className="h-[22px] w-auto md:h-[24px]" />
+            <img src={linux} alt="" width={21} height={25} className="h-[19px] w-auto sm:h-[22px] md:h-[24px]" />
           </a>
           <a
             href={LINKS.playStore}
             aria-label="Get it on Google Play"
-            className={`${btn} w-12 justify-center gap-2 min-[400px]:w-auto min-[400px]:px-3.5 md:w-[171px] md:justify-start md:pl-[19px] md:pr-3`}
+            className={`${btn} w-11 justify-center gap-2 min-[400px]:w-auto min-[400px]:px-3 md:w-[171px] md:justify-start md:pl-[19px] md:pr-3`}
             {...(isExternal(LINKS.playStore) && { target: '_blank', rel: 'noreferrer' })}
           >
-            <PlayStoreIcon className="size-[26px] shrink-0 sm:size-[31px]" />
+            <PlayStoreIcon className="size-[22px] shrink-0 sm:size-[27px] md:size-[31px]" />
             <span className="hidden text-left leading-none min-[400px]:block">
               <span className="block text-[9px] font-medium uppercase tracking-[0.02em]">Get it on</span>
               <span className="mt-[3px] block whitespace-nowrap text-[16.3px] font-medium tracking-[-0.015em]">
@@ -86,7 +86,7 @@ export function Header() {
             aria-expanded={menu}
             aria-controls="mobile-menu"
             onClick={() => setMenu((m) => !m)}
-            className={`${btn} w-12 justify-center lg:hidden`}
+            className={`${btn} w-11 justify-center sm:w-12 lg:hidden`}
           >
             <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
               {menu ? <path d="M6 6l12 12M18 6 6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
