@@ -46,8 +46,9 @@
 - **A glow that changes colour.** The half-circle behind the header sweeps clockwise through album colours.
 - **Every feature at a glance.** Album-colour themes, the 18-band EQ, lyric search, 12 widgets,
   Looper Analyze, backups and 14 languages, each with its own small animation.
-- **One-tap downloads.** Google Play, the APK, Linux `.deb` / `.rpm` / `.tar.gz` with copyable
-  install commands, and the Windows installer or portable `.zip`.
+- **One-tap downloads.** Google Play, the APK, Linux `.deb` / `.rpm` / AppImage / `.tar.gz` with
+  copyable install commands, and the Windows installer or portable `.zip`. Buttons link straight to the
+  latest release's files, and the site puts your platform first.
 - **Fast and light.** No animation library, no analytics, no cookies. Lazy media, clips that pause off
   screen, and full `prefers-reduced-motion` support.
 - **Works everywhere.** From a 360px phone to a wide desktop, with a mobile menu and no sideways scrolling.
@@ -106,7 +107,7 @@ npm run dev        # dev server with hot reload → http://localhost:5173
 | Lyrics (`#lyrics`)   | `LyricsShowcase.tsx`                 | A working copy of the lyrics screen (see below)              |
 | Features (`#features`) | `Features.tsx`                     | Bento grid with a small animation per card + languages strip |
 | Looper Analyze       | `Analyze.tsx`                        | Phone screenshot + animated sample stat cards                |
-| Download (`#download`) | `Download.tsx`                     | Play Store, APK, Linux .deb / .rpm / .tar.gz with copyable install commands, Windows .exe / .zip |
+| Download (`#download`) | `Download.tsx`                     | Play Store, APK, Linux .deb / .rpm / AppImage / .tar.gz with copyable install commands, Windows .exe / .zip. Buttons link straight to the latest release's files (with version and size), and the visitor's platform is shown first |
 | Privacy (`#privacy`) | `Privacy.tsx`                        | No account, no ads, no tracking, open source                 |
 | Videos, FAQ, Support | `Community.tsx`                      | YouTube videos, FAQ accordion, Ko-fi / GitHub / Telegram, contributors |
 | Footer               | `Footer.tsx`                         | All links real; GPL-3.0 note                                 |

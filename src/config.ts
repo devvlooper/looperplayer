@@ -2,10 +2,13 @@
 
 const REPO = 'https://github.com/sthrnilshaaa/looper'
 
+/** GitHub API for the latest release: the download buttons link straight to its files. */
+export const RELEASE_API = 'https://api.github.com/repos/sthrnilshaaa/looper/releases/latest'
+
 export const LINKS = {
   site: 'https://looperplayer.vercel.app',
   playStore: 'https://play.google.com/store/apps/details?id=com.looper.player', // Google Play listing
-  releases: `${REPO}/releases/latest`, // APK, Linux packages (.deb, .rpm, .tar.gz) and Windows (.exe, .zip)
+  releases: `${REPO}/releases/latest`, // Fallback when the API is unreachable: APK, Linux (.deb, .rpm, AppImage, .tar.gz), Windows (.exe, .zip)
   linuxDownload: '#download', // Header penguin → the download section with every Linux package
   windowsDownload: '#download', // Header Windows button → the download section
   github: REPO, // Source repository
