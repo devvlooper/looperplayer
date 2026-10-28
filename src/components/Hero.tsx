@@ -14,7 +14,7 @@ export function Hero() {
       </p>
       <CtaRow />
       <ul className="mt-5 flex flex-wrap justify-center gap-x-4 gap-y-1.5 text-[13px] sm:mt-6 sm:gap-x-5 sm:gap-y-2 sm:text-[14px] text-white/55" aria-label="Highlights">
-        {['Android & Linux', 'Free & open source', 'No ads, no tracking'].map((t) => (
+        {['Android, Linux & Windows', 'Free & open source', 'No ads, no tracking'].map((t) => (
           <li key={t} className="flex items-center gap-2">
             <svg viewBox="0 0 24 24" className="size-4 text-badge" fill="none" stroke="currentColor" strokeWidth="2.6" aria-hidden="true">
               <path d="M5 12.5l4.5 4.5L19 7.5" />

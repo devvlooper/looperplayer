@@ -78,7 +78,7 @@ export function Features() {
           className="md:col-span-2"
           delay={160}
           title="A real desktop app"
-          body="On Linux: a sidebar, wide grids, media keys and MPRIS, so your desktop controls just work."
+          body="On Linux and Windows: a sidebar, wide grids and media keys, plus MPRIS on Linux, so your desktop controls just work."
           visual={<Desktop />}
         />
         <Card

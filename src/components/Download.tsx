@@ -2,6 +2,7 @@ import { useState } from 'react'
 import linux from '../assets/linux.png'
 import { extProps, LINKS } from '../config'
 import { PlayStoreIcon } from './icons/PlayStore'
+import { WindowsIcon } from './icons/Windows'
 import { Reveal, SectionHead } from './Reveal'
 
 const DISTROS = [
@@ -34,11 +35,11 @@ export function Download() {
     <section id="download" className="relative px-4 py-12 sm:py-[clamp(72px,10vw,140px)]">
       <SectionHead
         eyebrow="Download"
-        title="Free on Android and Linux."
+        title="Free on Android, Linux and Windows."
         lede="No account, no subscription. Install it and point it at your music."
       />
 
-      <div className="mx-auto mt-8 grid max-w-[1100px] gap-3 sm:mt-14 sm:gap-4 md:grid-cols-2">
+      <div className="mx-auto mt-8 grid max-w-[1100px] gap-3 sm:mt-14 sm:gap-4 md:grid-cols-2 lg:grid-cols-3">
         <Reveal className="card card-spot flex flex-col p-5 sm:p-9">
           <div className="flex items-center gap-3">
             <span className="grid size-12 place-items-center rounded-2xl bg-[#3ddc84]/15">
@@ -121,6 +122,35 @@ export function Download() {
               <path d="M7 17 17 7M9 7h8v8" />
             </svg>
           </a>
+        </Reveal>
+        <Reveal delay={200} className="card card-spot flex flex-col p-5 sm:p-9 md:col-span-2 lg:col-span-1">
+          <div className="flex items-center gap-3">
+            <span className="grid size-12 place-items-center rounded-2xl bg-[#00a4ef]/15">
+              <WindowsIcon className="size-6 text-[#00a4ef]" />
+            </span>
+            <div>
+              <h3 className="font-display text-[22px] font-bold">Windows</h3>
+              <p className="text-[14px] text-white/50">Windows 10 and 11 · x64</p>
+            </div>
+          </div>
+          <a
+            href={LINKS.releases}
+            {...extProps(LINKS.releases)}
+            className="mt-6 flex h-12 sm:mt-8 sm:h-14 items-center justify-center gap-2 rounded-2xl bg-badge font-semibold text-bg transition hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(216,255,0,0.3)]"
+          >
+            Download the installer (.exe)
+          </a>
+          <a
+            href={LINKS.releases}
+            {...extProps(LINKS.releases)}
+            className="mt-3 flex h-12 sm:h-14 items-center justify-center rounded-2xl border border-olive-line bg-olive text-white transition hover:border-[#4a5022] hover:bg-[#25281a]"
+          >
+            Portable .zip, no install
+          </a>
+          <p className="mt-4 text-[14px] leading-[1.6] sm:mt-5 text-white/50">
+            The app isn&apos;t code-signed yet. If SmartScreen warns you, choose{' '}
+            <span className="text-white/75">More info → Run anyway</span>.
+          </p>
         </Reveal>
       </div>
     </section>

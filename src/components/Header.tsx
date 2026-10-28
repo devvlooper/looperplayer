@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import linux from '../assets/linux.png'
 import { isExternal, LINKS } from '../config'
 import { PlayStoreIcon } from './icons/PlayStore'
+import { WindowsIcon } from './icons/Windows'
 import { Logo } from './Logo'
 
 const SECTIONS = [
@@ -65,6 +66,15 @@ export function Header() {
             {...(isExternal(LINKS.linuxDownload) && { target: '_blank', rel: 'noreferrer' })}
           >
             <img src={linux} alt="" width={21} height={25} className="h-[18px] w-auto sm:h-[22px] md:h-[24px]" />
+          </a>
+          <a
+            href={LINKS.windowsDownload}
+            aria-label="Download for Windows"
+            title="Download for Windows"
+            className={`${btn} w-10 justify-center sm:w-12 md:w-[57px]`}
+            {...(isExternal(LINKS.windowsDownload) && { target: '_blank', rel: 'noreferrer' })}
+          >
+            <WindowsIcon className="size-[17px] sm:size-[20px] md:size-[22px]" />
           </a>
           <a
             href={LINKS.playStore}

@@ -38,6 +38,10 @@ const FAQ = [
     a: 'There are .deb packages for Debian, Ubuntu and Mint, .rpm packages for Fedora and openSUSE, and a .tar.gz you can run on any x86_64 distro.',
   },
   {
+    q: 'Which versions of Windows are supported?',
+    a: 'Windows 10 and 11, 64-bit. Use the setup .exe to install it, or the portable .zip to run it from any folder. The app is not code-signed yet, so if SmartScreen warns you, choose More info, then Run anyway.',
+  },
+  {
     q: 'Google Play or GitHub, which should I install?',
     a: 'Either. Google Play updates automatically through the store. The GitHub APK can update itself from inside the app.',
   },
