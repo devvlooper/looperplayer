@@ -13,6 +13,7 @@ export const LINKS = {
   windowsDownload: '#download', // Header Windows button → the download section
   github: REPO, // Source repository
   issues: `${REPO}/issues`, // Issue tracker
+  translations: `${REPO}/tree/main/lib/l10n`, // One .arb file per language
   contribute: `${REPO}#contributing`, // Contributing section of the README
   contributors: `${REPO}/graphs/contributors`,
   contributorsImage: 'https://contrib.rocks/image?repo=SthrNilshaaa/looper',

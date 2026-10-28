@@ -107,7 +107,10 @@ npm run dev        # dev server with hot reload → http://localhost:5173
 | Lyrics (`#lyrics`)   | `LyricsShowcase.tsx`                 | A working copy of the lyrics screen (see below)              |
 | Features (`#features`) | `Features.tsx`                     | Bento grid with a small animation per card + languages strip |
 | Looper Analyze       | `Analyze.tsx`                        | Phone screenshot + animated sample stat cards                |
+| What's new (`#whats-new`) | `WhatsNew.tsx`                   | The latest release's "What's New" notes, read live from GitHub; hidden if unavailable |
+| Get started (`#get-started`) | `GetStarted.tsx`               | Three steps: install, point it at your music, press play |
 | Download (`#download`) | `Download.tsx`                     | Play Store, APK, Linux .deb / .rpm / AppImage / .tar.gz with copyable install commands, Windows .exe / .zip. Buttons link straight to the latest release's files (with version and size), and the visitor's platform is shown first |
+| Languages (`#languages`) | `Languages.tsx`                  | The app's 14 languages in their own scripts, with a link to the translation files |
 | Privacy (`#privacy`) | `Privacy.tsx`                        | No account, no ads, no tracking, open source                 |
 | Videos, FAQ, Support | `Community.tsx`                      | YouTube videos, FAQ accordion, Ko-fi / GitHub / Telegram, contributors |
 | Footer               | `Footer.tsx`                         | All links real; GPL-3.0 note                                 |

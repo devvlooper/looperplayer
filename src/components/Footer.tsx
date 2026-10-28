@@ -6,11 +6,13 @@ const COLUMNS = [
     { label: 'Features', href: '#features' },
     { label: 'Screenshots', href: '#showcase' },
     { label: 'Download', href: '#download' },
+    { label: "What's New", href: '#whats-new' },
   ],
   [
     { label: 'GitHub', href: LINKS.github },
     { label: 'Report An Issue', href: LINKS.issues },
     { label: 'Contribute', href: LINKS.contribute },
+    { label: 'Join on Telegram', href: LINKS.telegram },
   ],
   [
     { label: 'Support on Ko-fi', href: LINKS.kofi },
@@ -22,7 +24,7 @@ const COLUMNS = [
 export function Footer() {
   return (
     <footer className="mx-auto mb-4 sm:mb-[clamp(24px,4.2vw,61px)] w-[calc(100%-32px)] max-w-[1321px] rounded-3xl border border-line bg-card px-6 py-8 sm:px-8 sm:py-10 md:w-[calc(100%-118px)] lg:py-0 lg:pl-[63px] lg:pr-8">
-      <div className="grid grid-cols-2 gap-x-6 gap-y-7 sm:grid-cols-3 sm:gap-y-9 lg:h-[198px] lg:grid-cols-[305fr_330fr_330fr_240fr] lg:items-start lg:gap-x-0 lg:pt-[48px]">
+      <div className="grid grid-cols-2 gap-x-6 gap-y-7 sm:grid-cols-3 sm:gap-y-9 lg:pb-[44px] lg:grid-cols-[305fr_330fr_330fr_240fr] lg:items-start lg:gap-x-0 lg:pt-[48px]">
         <div className="col-span-2 sm:col-span-3 lg:col-span-1">
           <Logo className="h-[31.5px] w-auto md:mt-[6px]" />
         </div>
